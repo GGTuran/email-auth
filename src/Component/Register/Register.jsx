@@ -1,11 +1,23 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import auth from "../../Firebase/firebase.config";
+import { useState } from "react";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 
 const Register = () => {
+    const [showPassword, setShowPassword] = useState(false);
     const registerBtn = e =>{
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email, password)
+        console.log(email, password);
+        createUserWithEmailAndPassword(auth, email, password)
+        .then(result=>{
+            console.log(result.user);
+        })
+        .catch(error=>{
+            console.log(error);
+        })
     }
     return (
         <div>
@@ -16,7 +28,10 @@ const Register = () => {
                 <input className="mb-4 w-3/4 px-2 py-4" placeholder="Email-Address" type="email" name="email" id="" />
                 <br />
 
-                <input className="mb-4 w-3/4 px-2 py-4" placeholder="Password" type="password" name="password" id="" />
+                <input className="mb-4 w-3/4 px-2 py-4" placeholder="Password"
+                 type={ showPassword ? "text" : "password"}
+                  name="password" id="" />
+                <span onClick={ () => setShowPassword(!showPassword) } ><MdOutlineRemoveRedEye /></span>
                 <br />
                 <input className="btn btn-ghost mb-4 w-3/4 px-2 py-4"  type="submit" value="Register" />
                 
