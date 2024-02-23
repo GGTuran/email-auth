@@ -25,13 +25,15 @@ const Register = () => {
             <p>Shall find something to register</p>
            <div className="mx-auto md:w-1/2">
            <form onSubmit={registerBtn} >
-                <input className="mb-4 w-3/4 px-2 py-4" placeholder="Email-Address" type="email" name="email" id="" />
+                <input className="mb-4 w-full px-2 py-4" placeholder="Email-Address" type="email" name="email" id="" />
                 <br />
 
-                <input className="mb-4 w-3/4 px-2 py-4" placeholder="Password"
+                <div className="relative mb-4">
+                <input className=" w-full px-2 py-4" placeholder="Password"
                  type={ showPassword ? "text" : "password"}
                   name="password" id="" />
-                <span onClick={ () => setShowPassword(!showPassword) } ><MdOutlineRemoveRedEye /></span>
+                <span className="absolute top-3 right-2" onClick={ () => setShowPassword(!showPassword) } ><MdOutlineRemoveRedEye /></span>
+                </div>
                 <br />
                 <input className="btn btn-ghost mb-4 w-3/4 px-2 py-4"  type="submit" value="Register" />
                 
